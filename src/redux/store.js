@@ -5,14 +5,14 @@ import { persistStore, FLUSH,
   PERSIST,
   PURGE,
   REGISTER} from 'redux-persist';
-import { contactsReducer } from "./contactsSlice";
+import { contactReducer } from "./contactsSlice";
 import { filterReducer } from "./filterSlice";
 
 
 
 export const store = configureStore({
     reducer: {
-    contacts: contactsReducer,
+    contacts: contactReducer,
     filter: filterReducer,
   },
    middleware(getDefaultMiddleware) {

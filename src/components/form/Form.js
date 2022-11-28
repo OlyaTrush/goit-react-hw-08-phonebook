@@ -1,32 +1,49 @@
-import { Div, Label, Input, Button } from "./form.styled"
+import { Div, Label, Input, Button } from "./form.styled";
 import { nanoid } from 'nanoid';
 import { useDispatch, useSelector, } from "react-redux";
-import { addContact } from "redux/contactsSlice";
-import { getContacts } from "redux/selectors"; 
+import { contactReducer } from "redux/contactsSlice";
+import { selectContacts } from "redux/selectors"; 
+import { useState } from "react";
     
-const nameInputId = nanoid();
-const numberInputId = nanoid();
- 
 
 export const Form = () => {
     
+    const [name, setName] = useState('');
+    const [phone, setNumber] = useState('');
+    const { items } = useSelector(selectContacts);
+  
     const dispatch = useDispatch();
-    const selector = useSelector(getContacts);
-    
-    const handleSubmit = e => {
-        e.preventDefault();
-        const form = e.target.elements
-        const contact = { id: nanoid(), name: form.name.value, number: form.number.value }
-        const name = selector.find(item => item.name === contact.name);
-        e.target.reset();
-
-        if (name) {
-            return alert(`${name.name} is already in contacts.`)
-        } else {
-            return dispatch(addContact(contact));
-        }
+  
+    const nameInputId = nanoid();
+    const numberInputId = nanoid();
+  
+    const isExistName = name => {
+      return items.some(item => item.name === name);
     };
-
+  
+    const isExistNumber = phone => {
+      return items.some(item => item.phone === phone);
+    };
+  
+    const handleSubmit = event => {
+      event.preventDefault();
+      if (isExistName(name)) {
+        alert(`${name} is already in name.`);
+        return;
+      }
+      if (isExistNumber(phone)) {
+        alert(`${phone} is already in number.`);
+        return;
+      }
+      dispatch(contactReducer({ id: nanoid(), name, phone }));
+      resetForm();
+    };
+  
+    const resetForm = () => {
+      setName('');
+      setNumber('');
+    };
+  
     return (
         <Div>
             <form onSubmit={handleSubmit}>
