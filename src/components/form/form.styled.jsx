@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Div = styled.div`
+export const FormContact = styled.div`
     width:310px;
 `;
 
