@@ -1,10 +1,9 @@
-import { FormContact, Label, Input, Button } from "./form.styled";
+import { FormContact, Label, Input, Button } from './form.styled';
 import { Formik } from 'formik';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { addContact } from 'redux/operations';
 import { selectContacts } from 'redux/selectors';
-    
 
 const initialValues = {
   name: '',
@@ -17,9 +16,12 @@ export const ContactForm = () => {
 
   const handleInput = (values, { resetForm }) => {
     const dublicateContact = findDublicate(values, contactsList);
-    dublicateContact
-      ? alert(`${values.name} or ${values.phone} is already in contacts`)
-      : dispatch(addContact(values));
+
+    if (values.name === '' || values.phone === '') {
+      return alert(`Please enter data in all fields`);
+    } else if (dublicateContact) {
+      return alert(`${values.name} or ${values.phone} is already in contacts`);
+    } else dispatch(addContact(values));
 
     resetForm();
   };
@@ -32,8 +34,8 @@ export const ContactForm = () => {
     );
   };
 
-    return (
-      <Formik initialValues={initialValues} onSubmit={handleInput}>
+  return (
+    <Formik initialValues={initialValues} onSubmit={handleInput}>
       <FormContact autoComplete="on">
         <Label htmlFor="name">
           Name
@@ -60,4 +62,3 @@ export const ContactForm = () => {
     </Formik>
   );
 };
-
