@@ -1,35 +1,43 @@
 
-import { ContactForm } from './form/Form'
-import { ContactList } from './contactList/ContactList';
-import { Filter } from './Filter/filter';
-import { Loader } from './Loader/Loader';
-
-import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { selectError, selectIsLoading } from 'redux/selectors';
-import { fetchContacts } from 'redux/operations';
-
-import { Div, Header, List, Section } from './app.styled';
+import { useDispatch } from 'react-redux';
+import { Navigate, Route, Routes } from 'react-router-dom';
+import { GlobalStyles } from '@mui/material';
+import { MainLayout } from './MainLayout';
+import { refreshUser } from 'redux/auth/authOperations';
+import { PrivateRoute } from './PrivateRoute';
+import { RegisterPage, LoginPage, PhonebookPage } from 'pages';
+import { PublicRestrictedRoute } from './PublicRestrictedRoute';
+import { globalStyles } from 'theme/globalStyles';
 
 export const App = () => {
   const dispatch = useDispatch();
-  const isLoading = useSelector(selectIsLoading);
-  const error = useSelector(selectError);
 
   useEffect(() => {
-    dispatch(fetchContacts());
+    dispatch(refreshUser());
   }, [dispatch]);
 
   return (
-    <Div>
-      <Header>Phonebook</Header>
-      <Section>
-        <ContactForm />
-      </Section>
-      <List>Contacts</List>
-      {isLoading && !error && <Loader />}
-      <Filter />
-      <ContactList />
-    </Div>
+    <>
+      <GlobalStyles styles={globalStyles} />
+
+      <Routes>
+        <Route path="/" element={<MainLayout />}>
+          <Route
+            index
+            element={<PrivateRoute component={<PhonebookPage />} />}
+          />
+          <Route
+            path="login"
+            element={<PublicRestrictedRoute component={<LoginPage />} />}
+          />
+          <Route
+            path="register"
+            element={<PublicRestrictedRoute component={<RegisterPage />} />}
+          />
+        </Route>
+        <Route path="*" element={<Navigate to="/" />} />
+      </Routes>
+    </>
   );
 };
