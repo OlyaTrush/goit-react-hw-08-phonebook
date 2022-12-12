@@ -97,9 +97,8 @@ export const LoginPage = () => {
             )}
           />
           <ComonParagraph>
-            {"Haven't account yet? Please "}
-            <ComonLink to="/register">register</ComonLink>
-            {'.'}
+            {"Don't have account? Please, "}
+            <ComonLink to="/register">Register</ComonLink>
           </ComonParagraph>
           <LoadingButton
             fullWidth
