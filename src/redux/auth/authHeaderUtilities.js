@@ -1,9 +1,4 @@
 import axios from 'axios';
-import { API_BASE_URL } from 'constants/apiBaseUrl';
-
-export const api = axios.create({
-  baseURL: API_BASE_URL,
-});
 
 export const setAuthHeader = token =>
   (axios.defaults.headers.common.Authorization = `Bearer ${token}`);
