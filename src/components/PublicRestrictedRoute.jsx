@@ -5,7 +5,7 @@ export const PublicRestrictedRoute = ({
   component: Component,
   redirectTo = '/',
 }) => {
-  const { isLoggedIn } = useAuth();
+   const { isLoggedIn } = useAuth();
 
   return isLoggedIn ? <Navigate to={redirectTo} /> : Component;
 };
