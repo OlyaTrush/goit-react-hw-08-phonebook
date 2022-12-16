@@ -16,39 +16,9 @@ export const StyledAppBar = styled(AppBar)`
 export const UnauthorizedPageLogo = styled('h1')`
   margin: 0;
 
-  font-size: 14px;
+  font-size: 24px;
 
-  @media screen and (min-width: 340px) {
-    font-size: 16px;
-  }
-
-  @media screen and (min-width: 360px) {
-    font-size: 18px;
-  }
-
-  @media screen and (min-width: 380px) {
-    font-size: 20px;
-  }
-
-  @media screen and (min-width: 400px) {
-    font-size: 22px;
-  }
-
-  @media screen and (min-width: 420px) {
-    font-size: 24px;
-  }
-
-  @media screen and (min-width: 440px) {
-    font-size: 28px;
-  }
-
-  @media screen and (min-width: 480px) {
-    font-size: 34px;
-  }
-
-  @media screen and (min-width: 520px) {
-    font-size: 36px;
-  }
+  
 `;
 
 export const AuthorizedPageLogo = styled('h1')`
@@ -68,35 +38,9 @@ export const AuthorizedPageLogo = styled('h1')`
 
   margin: 0;
 
-  font-size: 14px;
+  font-size: 24px;
 
-  @media screen and (min-width: 620px) {
-    font-size: 16px;
-  }
-
-  @media screen and (min-width: 640px) {
-    font-size: 18px;
-  }
-
-  @media screen and (min-width: 660px) {
-    font-size: 20px;
-  }
-
-  @media screen and (min-width: 700px) {
-    font-size: 22px;
-  }
-
-  @media screen and (min-width: 768px) {
-    font-size: 24px;
-  }
-
-  @media screen and (min-width: 860px) {
-    font-size: 28px;
-  }
-
-  @media screen and (min-width: 960px) {
-    font-size: 36px;
-  }
+  
 `;
 
 export const FilterContainer = styled('div')`
