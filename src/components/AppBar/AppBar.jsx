@@ -9,11 +9,10 @@ import {
   AuthorizedPageLogo,
   StyledAppBar,
 } from './AppBarStyled';
-import { useGetContactsQuery } from 'redux/contacts/contactsApi';
+
 
 export const AppBar = () => {
   const { isLoggedIn, isRefreshing, isPending } = useAuth();
-  const { isFetching } = useGetContactsQuery();
 
   return (
     <StyledAppBar>
@@ -31,7 +30,7 @@ export const AppBar = () => {
 
       {isLoggedIn ? <UserMenu /> : <MainNavigation />}
       <ComonLinearProgress
-        isvisible={isRefreshing || isPending || isFetching ? '1' : '0'}
+        isvisible={isRefreshing || isPending  ? '1' : '0'}
       />
     </StyledAppBar>
   );
