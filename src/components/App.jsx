@@ -9,6 +9,7 @@ import { PrivateRoute } from './PrivateRoute';
 import { RegisterPage, LoginPage, PhonebookPage } from 'pages';
 import { PublicRestrictedRoute } from './PublicRestrictedRoute';
 import { globalStyles } from 'theme/globalStyles';
+import { Home } from 'pages/Home';
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -23,10 +24,7 @@ export const App = () => {
 
       <Routes>
         <Route path="/" element={<MainLayout />}>
-          <Route
-            index
-            element={<PrivateRoute component={<PhonebookPage />} />}
-          />
+        < Route  index  element = {< Home  />} />
           <Route
             path="login"
             element={<PublicRestrictedRoute component={<LoginPage />} />}
@@ -34,6 +32,10 @@ export const App = () => {
           <Route
             path="register"
             element={<PublicRestrictedRoute component={<RegisterPage />} />}
+          />
+          <Route
+            path ='contact'
+            element={<PrivateRoute component={<PhonebookPage />} />}
           />
         </Route>
         <Route path="*" element={<Navigate to="/" />} />

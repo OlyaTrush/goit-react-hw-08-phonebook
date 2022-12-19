@@ -9,6 +9,7 @@ export const MainNavigation = () => {
       <nav>
         <UserNavLink to="/login">Log In</UserNavLink>
         <UserNavLink to="/register">Register</UserNavLink>
+        
       </nav>
     );
 };
