@@ -9,7 +9,7 @@ import { IconButton, InputAdornment } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { registerSchema } from 'utilities/validationSchemas';
 import { PublicPageContainer } from 'components/PublicPageContainer/PublicPageContainer';
-import { ComonInput, ComonLinearProgress } from 'components/shared';
+import { ComonInput, ComonLinearProgress, ComonParagraph, ComonLink } from 'components/shared';
 
 export const RegisterPage = () => {
   const dispatch = useDispatch();
@@ -166,6 +166,10 @@ export const RegisterPage = () => {
               />
             )}
           />
+          <ComonParagraph>
+            {"Already have account? Please, "}
+            <ComonLink to="/login"> Sing in</ComonLink>
+          </ComonParagraph>
 
           <LoadingButton
             fullWidth
