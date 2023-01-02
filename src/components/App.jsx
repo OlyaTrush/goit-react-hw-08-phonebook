@@ -9,7 +9,7 @@ import { PrivateRoute } from './PrivateRoute';
 import { RegisterPage, LoginPage, PhonebookPage } from 'pages';
 import { PublicRestrictedRoute } from './PublicRestrictedRoute';
 import { globalStyles } from 'theme/globalStyles';
-import { Home } from 'pages/Home';
+import Home from 'pages/Home';
 
 export const App = () => {
   const dispatch = useDispatch();
