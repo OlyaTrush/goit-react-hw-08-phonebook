@@ -1,37 +1,37 @@
-import { useAuth } from 'hooks/useAuth';
-import { FilterField } from 'components/FilterField/FilterField';
-import { MainNavigation } from 'components/MainNavigation/MainNavigation';
-import { UserMenu } from 'components/UserMenu/UserMenu';
-import { ComonLinearProgress } from 'components/shared';
-import {
-  FilterContainer,
-  UnauthorizedPageLogo,
-  AuthorizedPageLogo,
-  StyledAppBar,
-} from './AppBarStyled';
+import * as React from 'react';
+import AppBar from '@mui/material/AppBar';
+import { Box, Toolbar } from '@mui/material';
+import { Navigation } from '../Navigation';
+import { UserMenu } from '../UserMenu';
+import { AuthNav } from '../AuthNav';
+import { useAuth } from 'hooks';
 
-
-export const AppBar = () => {
-  const { isLoggedIn, isRefreshing, isPending } = useAuth();
+export const Header = () => {
+  const { isLoggedIn } = useAuth();
 
   return (
-    <StyledAppBar>
-      {isLoggedIn ? (
-        <AuthorizedPageLogo>Your personal phonebook site</AuthorizedPageLogo>
-      ) : (
-        <UnauthorizedPageLogo>The Phonebook</UnauthorizedPageLogo>
-      )}
-
-      {isLoggedIn && !isRefreshing ? (
-        <FilterContainer>
-          <FilterField />
-        </FilterContainer>
-      ) : null}
-
-      {isLoggedIn ? <UserMenu /> : <MainNavigation />}
-      <ComonLinearProgress
-        isvisible={isRefreshing || isPending  ? '1' : '0'}
-      />
-    </StyledAppBar>
+    <Box sx={{ flexGrow: 1 }}>
+      <AppBar position="static">
+        <Toolbar
+          sx={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            bgcolor: '#61bae9',
+          }}
+        >
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <Navigation />
+          </Box>
+          {isLoggedIn ? <UserMenu /> : <AuthNav />}
+        </Toolbar>
+      </AppBar>
+    </Box>
   );
 };
